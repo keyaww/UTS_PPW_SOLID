@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.5) 100%),
+    linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%);
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Card Container */
+.auth-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 342px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 26px 34px 22px 34px;
+}
+
+/* Card Title */
+.auth-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: -0.2px;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+/* Input Wrapper & Inputs */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+  height: 27px;
+  border: 1px solid #bcbcbc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-family: inherit;
+  color: #333333;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field::placeholder {
+  color: #b0b0b0;
+  font-weight: 400;
+  font-size: 10.5px;
+}
+
+.input-field:focus {
+  border-color: #72baff;
+  box-shadow: 0 2px 6px rgba(106, 183, 255, 0.25);
+}
+
+.input-wrapper.has-icon .input-field {
+  padding-right: 32px;
+}
+
+/* Eye Icon */
+.eye-icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #788686;
+  outline: none;
+}
+
+.eye-icon-btn svg {
+  display: block;
+}
+
+/* Action Buttons */
+.btn-row-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
+}
+
+.btn-row-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #d1eafd 0%, #d5fcf1 100%);
+  border: 1px solid #b8c4c7;
+  border-radius: 5px;
+  height: 24px;
+  padding: 0 18px;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.btn-submit:hover {
+  filter: brightness(0.96);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+/* Divider Line */
+.auth-divider {
+  border: none;
+  border-top: 1px solid #cacaca;
+  margin: 15px 0 9px 0;
+}
+
+.social-title {
+  font-size: 10px;
+  color: #555555;
+  text-align: center;
+  margin-bottom: 9px;
+  font-weight: 400;
+}
+
+/* Social Buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.social-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #c7c7c7;
+  border-radius: 6px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.social-btn:active {
+  transform: translateY(0);
+}
+
+/* Footer Text & Links */
+.auth-footer {
+  font-size: 10px;
+  text-align: center;
+  color: #3a3a3a;
+  margin-top: 18px;
+  font-weight: 400;
+}
+
+.auth-footer a {
+  color: #2977cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Success Card */
+.success-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 342px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 19px 24px;
+  text-align: center;
+}
+
+.success-message {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+  letter-spacing: -0.1px;
+}
+
