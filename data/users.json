@@ -18,5 +18,15 @@
         "bio": "Mahasiswa Ilmu Komputer UNJ",
         "avatar": "https://ui-avatars.com/api/?name=Ryanzzz&background=6ab7ff&color=ffffff&size=150",
         "created_at": "2026-10-24 14:20:50"
+    },
+    {
+        "id": 3,
+        "name": "Niggas",
+        "username": "Nigger_Niggas",
+        "email": "niggeralldie@gmail.com",
+        "password": "$2y$10$m5DO3U4.dV5/Xx9X9qpNHOKDDd8Nzlf8m/j21ito0V1OcOnUJ7/7u",
+        "bio": "Mahasiswa Ilmu Komputer UNJ",
+        "avatar": "https://ui-avatars.com/api/?name=Niggas&background=6ab7ff&color=ffffff&size=150",
+        "created_at": "2026-10-24 14:58:55"
     }
 ]
