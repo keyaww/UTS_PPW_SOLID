@@ -237,8 +237,6 @@ body {
   letter-spacing: -0.1px;
 }
 
-
-
 /* Alert */
 .alert-box {
   width: 100%;
@@ -858,4 +856,322 @@ body.full-layout {
   border-top: 1px solid #e5e7eb;
   background: #ffffff;
   margin-top: 30px;
+}
+
+.home-page {
+  /* Palet tim (diambil dari halaman login) */
+  --hm-blue: #6db4fb;
+  --hm-cyan: #6acde8;
+  --hm-mint: #6efbc2;
+  --hm-blue-soft: #d4e8fc;
+  --hm-mint-soft: #d5f8ec;
+  --hm-link: #1d6fd1;
+
+  --hm-ink: #1f2933;
+  --hm-ink-2: #3d4b58;
+  --hm-muted: #5d6b78;
+  --hm-line: #dbe5ec;
+  --hm-accent: #1558b0;       
+  --hm-navy: #0b3a78;
+
+  --hm-grad-vivid: linear-gradient(100deg, #6db4fb 0%, #6acde8 50%, #6efbc2 100%);
+  --hm-shadow: 0 14px 34px rgba(40, 110, 170, .16);
+
+  --hm-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --hm-sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --hm-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  font-family: var(--hm-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--hm-ink);
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 55% 45% at 0% 45%, rgba(109, 180, 251, .55), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 100% 55%, rgba(110, 251, 194, .55), transparent 70%),
+    linear-gradient(135deg, #b9dcfd 0%, #b1ecf0 50%, #b5fbe0 100%);
+  background-attachment: fixed;
+}
+
+html { scroll-behavior: smooth; }
+.home-page * { box-sizing: border-box; }
+.home-page a { text-decoration: none; color: inherit; }
+/* :where() membuat reset ini berspesifisitas 0, sehingga margin/padding
+   di class .hm-* (lead, kicker, panel, dll.) tidak lagi tertimpa. */
+.home-page :where(h1, h2, h3, h4) { margin: 0; font-weight: 400; }
+.home-page :where(p) { margin: 0; }
+.home-page :where(ol, ul) { margin: 0; padding: 0; list-style: none; }
+
+.hm-mono { font-family: var(--hm-mono); font-size: .78rem; letter-spacing: .02em; }
+.hm-muted { color: var(--hm-muted); }
+.hm-wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+.home-page :focus-visible { outline: 2px solid var(--hm-accent); outline-offset: 3px; }
+
+/* ---------- Navbar ---------- */
+.home-page .site-navbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .88);
+  border-bottom: 1px solid rgba(31, 41, 51, .08);
+  box-shadow: none;
+}
+.home-page .navbar-container {
+  max-width: 1120px; margin: 0 auto; padding: 12px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.home-page .brand-logo {
+  font-family: var(--hm-serif);
+  font-size: 1.7rem; line-height: 1;
+  color: var(--hm-accent);
+  background: none;
+  -webkit-text-fill-color: var(--hm-accent);
+}
+.home-page .navbar-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.home-page .nav-link { color: var(--hm-ink-2); padding: 8px 10px; font-size: .92rem; }
+.home-page .nav-link:hover { color: var(--hm-accent); }
+.home-page .nav-btn-primary,
+.home-page .nav-btn-outline {
+  display: inline-block; padding: 9px 16px; border-radius: 8px;
+  font-family: var(--hm-sans); font-size: .9rem; font-weight: 500;
+  color: var(--hm-ink);
+  transition: background .15s ease, border-color .15s ease;
+}
+.home-page .nav-btn-primary {
+  background: var(--hm-grad-vivid); border: 1px solid rgba(31, 41, 51, .1); box-shadow: none;
+}
+.home-page .nav-btn-primary:hover { filter: brightness(1.04); }
+.home-page .nav-btn-outline { background: #fff; border: 1px solid #b8cfdd; }
+.home-page .nav-btn-outline:hover { border-color: var(--hm-accent); color: var(--hm-accent); }
+
+/* ---------- Tombol ---------- */
+.hm-btn {
+  display: inline-block; padding: 13px 24px; border-radius: 8px;
+  font-weight: 500; font-size: .98rem; border: 1px solid transparent;
+  transition: filter .15s ease, background .15s ease, border-color .15s ease;
+}
+.hm-btn-solid,
+.hm-btn-accent {
+  background: var(--hm-grad-vivid); color: var(--hm-ink);
+  border-color: rgba(31, 41, 51, .1);
+  box-shadow: 0 8px 20px rgba(60, 160, 200, .28);
+}
+.hm-btn-solid:hover,
+.hm-btn-accent:hover { filter: brightness(1.05); }
+.hm-btn-line { background: rgba(255, 255, 255, .85); color: var(--hm-ink); border-color: #b8cfdd; }
+.hm-btn-line:hover { background: #fff; border-color: var(--hm-accent); color: var(--hm-accent); }
+
+.hm-kicker { color: var(--hm-navy); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 18px; }
+
+/* ---------- Hero ---------- */
+.hm-hero { padding: 84px 0 96px; }
+.hm-hero-grid {
+  display: grid; grid-template-columns: 1.25fr 1fr;
+  gap: 72px; align-items: center;
+}
+.hm-title {
+  font-family: var(--hm-serif);
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  line-height: 1.02; letter-spacing: -.015em;
+  max-width: 14ch;
+}
+.hm-title em { font-style: italic; color: var(--hm-accent); }
+.hm-lead { margin: 26px 0 34px; max-width: 46ch; font-size: 1.1rem; color: var(--hm-ink-2); }
+.hm-cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* contoh feed */
+.hm-preview { margin: 0; display: grid; gap: 14px; }
+.hm-preview figcaption { color: var(--hm-ink-2); }
+.hm-post {
+  background: #fff;
+  border: 1px solid rgba(31, 41, 51, .06);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--hm-shadow);
+}
+.hm-post header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.hm-post header strong { display: block; font-size: .95rem; line-height: 1.2; }
+.hm-post header .hm-mono { color: var(--hm-muted); }
+.hm-initial {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--hm-serif); font-size: 1.2rem;
+  background: var(--hm-blue-soft); color: var(--hm-navy);
+}
+.hm-post p { font-size: .98rem; }
+.hm-post footer { display: flex; gap: 18px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--hm-line); color: var(--hm-muted); }
+.hm-post-reply { margin-left: 36px; box-shadow: none; background: rgba(255, 255, 255, .7); }
+.hm-post-reply .hm-initial { background: var(--hm-mint-soft); }
+
+/* ---------- Section umum ---------- */
+.hm-section { padding: 96px 0; }
+.hm-section h2 { font-family: var(--hm-serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.01em; }
+
+.hm-split { display: grid; grid-template-columns: 1fr 1.7fr; gap: 64px; align-items: start; }
+.hm-split-head { position: sticky; top: 96px; }
+.hm-split-head .hm-muted { margin-top: 16px; max-width: 32ch; color: var(--hm-ink-2); }
+
+/* ---------- Daftar fitur (panel putih) ---------- */
+.hm-list,
+.hm-faq-list {
+  background: #fff;
+  border-radius: 20px;
+  padding: 6px 32px;
+  box-shadow: var(--hm-shadow);
+}
+
+.hm-list li {
+  display: grid; grid-template-columns: 48px 1fr 104px; gap: 20px; align-items: baseline;
+  padding: 26px 0; border-top: 1px solid var(--hm-line);
+}
+.hm-list li:first-child { border-top: 0; }
+.hm-num { color: var(--hm-accent); font-size: .85rem; }
+.hm-list h3 { font-family: var(--hm-serif); font-size: 1.7rem; line-height: 1.15; margin-bottom: 6px; }
+.hm-list p { color: var(--hm-ink-2); max-width: 52ch; }
+.hm-tag {
+  justify-self: end; width: 104px; text-align: center;
+  padding: 5px 0; border-radius: 999px; font-size: .75rem;
+  background: var(--hm-blue-soft); color: var(--hm-navy);
+  white-space: nowrap;
+}
+.hm-list li:nth-child(even) .hm-tag { background: var(--hm-mint-soft); }
+
+/* ---------- Langkah ---------- */
+.hm-section-ink { background: var(--hm-grad-vivid); color: var(--hm-ink); }
+.hm-section-ink .hm-kicker { color: var(--hm-navy); }
+.hm-h2-lg { max-width: 18ch; margin-bottom: 56px; }
+.hm-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(31, 41, 51, .3); }
+.hm-steps li { padding: 30px 28px 8px 0; }
+.hm-steps li + li { padding-left: 28px; border-left: 1px solid rgba(31, 41, 51, .3); }
+.hm-steps .hm-mono { color: var(--hm-navy); }
+.hm-steps h3 { font-family: var(--hm-serif); font-size: 2.2rem; line-height: 1.1; margin: 14px 0 10px; }
+.hm-steps p { color: var(--hm-ink); max-width: 30ch; }
+
+/* ---------- FAQ ---------- */
+.hm-faq { border-top: 1px solid var(--hm-line); }
+.hm-faq:first-child { border-top: 0; }
+.hm-faq summary {
+  cursor: pointer; list-style: none; position: relative;
+  padding: 22px 40px 22px 0;
+  font-family: var(--hm-serif); font-size: 1.45rem; line-height: 1.2;
+}
+.hm-faq summary::-webkit-details-marker { display: none; }
+.hm-faq summary::after {
+  content: '+'; position: absolute; right: 0; top: 18px;
+  font-family: var(--hm-mono); font-size: 1.4rem; color: var(--hm-accent);
+}
+.hm-faq[open] summary::after { content: '\2212'; }
+.hm-faq summary:hover { color: var(--hm-accent); }
+.hm-faq p { padding: 0 40px 24px 0; color: var(--hm-ink-2); max-width: 56ch; }
+
+/* ---------- Blok ajakan ---------- */
+.hm-cta-block {
+  margin: 96px 0 96px; padding: 52px 56px;
+  background: #fff; color: var(--hm-ink);
+  border-radius: 24px;
+  box-shadow: var(--hm-shadow);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.hm-cta-block h2 { font-family: var(--hm-serif); font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; }
+.hm-cta-block em { font-style: italic; color: var(--hm-accent); }
+
+/* ---------- Footer ---------- */
+.hm-footer { background: #fff; border-top: 1px solid rgba(31, 41, 51, .08); padding-top: 48px; }
+.hm-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+.hm-footer .hm-muted { margin-top: 10px; font-size: .92rem; max-width: 30ch; color: var(--hm-muted); }
+.hm-footer h4 { color: var(--hm-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+.hm-footer nav a { display: block; padding: 3px 0; font-size: .95rem; }
+.hm-footer nav a:hover { color: var(--hm-link); }
+.hm-copy { margin-top: 48px; padding: 20px 28px; border-top: 1px solid var(--hm-line); text-align: center; color: var(--hm-muted); }
+
+/* ---------- Responsif ---------- */
+
+/* Laptop kecil & iPad landscape (<= 1100px) */
+@media (max-width: 1100px) {
+  .hm-hero-grid { gap: 48px; }
+  .hm-split { gap: 44px; }
+  .hm-cta-block { padding: 44px 40px; }
+}
+
+/* iPad portrait & tablet (<= 920px) */
+@media (max-width: 920px) {
+  .hm-wrap,
+  .home-page .navbar-container { padding-left: 32px; padding-right: 32px; }
+
+  .hm-hero { padding: 56px 0 72px; }
+  .hm-hero-grid, .hm-split { grid-template-columns: 1fr; gap: 48px; }
+  .hm-title { max-width: 18ch; }
+  .hm-lead { max-width: 52ch; }
+  .hm-preview { max-width: 600px; }
+
+  .hm-split-head { position: static; }
+  .hm-split-head .hm-muted { max-width: 52ch; }
+
+  .hm-section { padding: 72px 0; }
+  .hm-cta-block { margin: 72px 0; }
+  .home-page .nav-link { padding: 8px; }
+}
+
+/* Tablet kecil (<= 700px): langkah & footer menyesuaikan */
+@media (max-width: 700px) {
+  .hm-steps { grid-template-columns: 1fr; }
+  .hm-steps li, .hm-steps li + li { padding: 24px 0; border-left: 0; }
+  .hm-steps li + li { border-top: 1px solid rgba(31, 41, 51, .3); }
+
+  .hm-footer-grid { grid-template-columns: 1fr 1fr; }
+  .hm-footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+
+/* Ponsel (<= 600px) */
+@media (max-width: 600px) {
+  .hm-wrap,
+  .home-page .navbar-container { padding-left: 20px; padding-right: 20px; }
+
+  /* Navbar: satu baris sejajar, logo di kiri, tombol di kanan */
+  .home-page .navbar-container { flex-wrap: nowrap; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+  .home-page .brand-logo { font-size: 1.5rem; flex-shrink: 0; }
+  .home-page .navbar-nav { flex-wrap: nowrap; justify-content: flex-end; gap: 8px; }
+  .home-page .navbar-nav .nav-link { display: none; }
+  .home-page .nav-btn-primary,
+  .home-page .nav-btn-outline { padding: 9px 14px; font-size: .86rem; white-space: nowrap; }
+
+  /* Hero */
+  .hm-hero { padding: 40px 0 56px; }
+  .hm-title { font-size: 2.6rem; max-width: none; }
+  .hm-lead { font-size: 1rem; margin: 20px 0 28px; }
+  .hm-cta-row { flex-direction: column; }
+  .hm-cta-row .hm-btn { width: 100%; text-align: center; }
+  .hm-post-reply { margin-left: 16px; }
+
+  /* Isi halaman */
+  .hm-section { padding: 56px 0; }
+  .hm-h2-lg { margin-bottom: 36px; }
+
+  .hm-list, .hm-faq-list { padding: 4px 20px; border-radius: 16px; }
+  .hm-list li { grid-template-columns: 36px 1fr; gap: 14px; padding: 20px 0; }
+  .hm-list h3 { font-size: 1.45rem; }
+  .hm-tag { display: none; }
+
+  .hm-steps h3 { font-size: 1.9rem; }
+
+  .hm-faq summary { font-size: 1.25rem; padding: 18px 32px 18px 0; }
+  .hm-faq summary::after { top: 14px; }
+  .hm-faq p { padding-right: 0; }
+
+  .hm-cta-block { flex-direction: column; align-items: stretch; padding: 32px 24px; margin: 56px 0; border-radius: 20px; }
+  .hm-cta-block .hm-btn { text-align: center; }
+}
+
+/* Ponsel kecil (<= 380px) */
+@media (max-width: 380px) {
+  .home-page .navbar-container { gap: 8px; }
+  .home-page .brand-logo { font-size: 1.35rem; }
+  .home-page .navbar-nav { gap: 6px; }
+  .home-page .nav-btn-primary,
+  .home-page .nav-btn-outline { padding: 8px 10px; font-size: .8rem; }
+  .hm-title { font-size: 2.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .home-page * { transition: none !important; }
 }
