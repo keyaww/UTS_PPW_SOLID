@@ -754,3 +754,157 @@ body.full-layout {
   background: #ffffff;
   margin-top: 30px;
 }
+
+/* ========================================================
+   Halaman Dashboard (Status Berhasil Login)
+======================================================== */
+.dashboard-welcome-container {
+  max-width: 620px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.dashboard-welcome-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 36px 30px;
+  text-align: center;
+}
+
+.dashboard-success-badge-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2px solid #86efac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  color: #16a34a;
+}
+
+.dashboard-success-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.dashboard-success-subtitle {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+.dashboard-user-card-inner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.dashboard-user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #6ab7ff;
+  flex-shrink: 0;
+}
+
+.dashboard-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-user-info-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.dashboard-user-info-handle {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.dashboard-user-info-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.dashboard-pill-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.dashboard-pill-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.dashboard-btn-cta-feed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%);
+  color: #1f2937;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  height: 42px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(106, 183, 255, 0.28);
+  transition: all 0.2s ease;
+  margin: 0 auto;
+}
+
+.dashboard-btn-cta-feed:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(106, 183, 255, 0.35);
+}
+
+.dashboard-btn-cta-feed:active {
+  transform: translateY(0);
+}
+
+.dashboard-secondary-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+

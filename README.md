@@ -33,11 +33,12 @@ Seluruh navigasi diatur secara terpusat oleh **`index.php`** menggunakan paramet
 | `?page=home` | `index.php` | `GET` | Publik | `views/home.php` | **Halaman Awal** (Tugas Sakha). Halaman pembuka website. |
 | `?page=register` | `register.php` | `GET` / `POST` | Tamu | `views/register.php` | **Pendaftaran Akun** (Tugas Keya). Menyimpan akun baru ke `data/users.json`. |
 | `?page=login` | `login.php` | `GET` / `POST` | Tamu | `views/login.php` | **Masuk Akun** (Tugas Keya). Memverifikasi kredensial dan set session. |
-| `?page=dashboard` | `dashboard.php` | `GET` | **Wajib Login** | `views/dashboard.php` | **Halaman Berhasil Login** (Tugas Dzammar). Menampilkan feed pengguna. |
+| `?page=dashboard` | `dashboard.php` | `GET` | **Wajib Login** | `views/dashboard.php` | **Halaman Dashboard**. Menampilkan status sukses login dan tombol ke feed. |
+| `?page=feed` | `feed.php` | `GET` | **Wajib Login** | `views/feed.php` | **Halaman Feed** (Tugas Dzammar). Menampilkan feed media sosial. |
 | `?page=logout` | `logout.php` | `GET` | Member | - | Menghapus session dan mengarahkan kembali ke login. |
 
 ### Proteksi Rute (Route Guard):
-* **Halaman Dashboard**: Jika user yang **belum login** mencoba membuka `dashboard.php`, sistem otomatis menolak akses dan me-redirect ke `login.php` dengan pesan error: *"Silakan masuk ke akun Anda terlebih dahulu!"*.
+* **Halaman Dashboard & Feed**: Jika user yang **belum login** mencoba membuka `dashboard.php` atau `feed.php`, sistem otomatis menolak akses dan me-redirect ke `login.php` dengan pesan error: *"Silakan masuk ke akun Anda terlebih dahulu!"*.
 * **Halaman Login & Register**: Jika user yang **sudah login** mencoba membuka halaman ini, sistem otomatis mengarahkannya langsung ke `dashboard.php`.
 
 ---
@@ -50,6 +51,7 @@ UTS_PPW_SOLID/
 ├── login.php             # Akses langsung login (?page=login)
 ├── register.php          # Akses langsung register (?page=register)
 ├── dashboard.php         # Akses langsung dashboard (?page=dashboard)
+├── feed.php              # Akses langsung feed (?page=feed)
 ├── logout.php            # Akses langsung logout (?page=logout)
 ├── style.css             # File stylesheet CSS utama
 ├── README.md             # Dokumentasi proyek & rute
@@ -65,7 +67,8 @@ UTS_PPW_SOLID/
     ├── home.php          # [TUGAS SAKHA] Template Halaman Awal
     ├── login.php         # [TUGAS KEYA] Template Form Login
     ├── register.php      # [TUGAS KEYA] Template Form Register
-    └── dashboard.php     # [TUGAS DZAMMAR] Template Halaman Berhasil Login
+    ├── dashboard.php     # Template Halaman Status Berhasil Login
+    └── feed.php          # [TUGAS DZAMMAR] Template Halaman Feed Medsos
 ```
 
 ---

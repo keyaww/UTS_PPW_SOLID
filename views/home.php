@@ -8,7 +8,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halaman Awal</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=<?= time() ?>">
 </head>
 <body class="full-layout">
 
@@ -21,7 +21,8 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
         <a href="index.php?page=home" class="nav-link">Beranda</a>
         
         <?php if ($currentUser): ?>
-          <a href="index.php?page=dashboard" class="nav-btn-primary">Ke Dashboard</a>
+          <a href="index.php?page=dashboard" class="nav-link">Dashboard</a>
+          <a href="index.php?page=feed" class="nav-btn-primary">Ke Feed</a>
           <a href="index.php?page=logout" class="nav-btn-outline" style="color: #dc2626;">Keluar</a>
         <?php else: ?>
           <a href="index.php?page=login" class="nav-btn-outline">Masuk</a>
@@ -42,7 +43,8 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
 
       <div style="display: flex; gap: 10px; justify-content: center;">
         <?php if ($currentUser): ?>
-          <a href="index.php?page=dashboard" class="btn-submit" style="height: 32px; padding: 0 20px; font-size: 12px;">Buka Halaman Feed</a>
+          <a href="index.php?page=dashboard" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px;">Ke Dashboard</a>
+          <a href="index.php?page=feed" class="btn-submit" style="height: 32px; padding: 0 20px; font-size: 12px;">Buka Halaman Feed &rarr;</a>
         <?php else: ?>
           <a href="index.php?page=register" class="btn-submit" style="height: 32px; padding: 0 20px; font-size: 12px;">Daftar Akun Baru</a>
           <a href="index.php?page=login" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 20px;">Masuk</a>
