@@ -8,30 +8,33 @@ $userBio    = !empty($currentUser['bio']) ? $currentUser['bio'] : 'Mahasiswa Ilm
 $userAvatar = !empty($currentUser['avatar']) ? $currentUser['avatar'] : 'https://ui-avatars.com/api/?name=' . urlencode($userName) . '&background=6ab7ff&color=ffffff&size=150';
 $userJoined = !empty($currentUser['created_at']) ? date('d M Y', strtotime($currentUser['created_at'])) : 'Oktober 2026';
 
-function icon($name) {
-  $icons = [
-    'logo'       => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:#0284c7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>',
-    'search'     => '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
-    'home'       => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-    'globe'      => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
-    'bell'       => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
-    'mail'       => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
-    'users'      => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-    'bookmark'   => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
-    'settings'   => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
-    'plus'       => '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
-    'media'      => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
-    'tag'        => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>',
-    'smile'      => '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>',
-    'heart'      => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+function icon($name, $size = 18) {
+  static $icons = [
+    'logo'       => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>',
+    'search'     => '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+    'home'       => '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    'globe'      => '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+    'bell'       => '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+    'mail'       => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    'users'      => '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    'bookmark'   => '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+    'save'       => '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+    'settings'   => '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+    'plus'       => '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+    'media'      => '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+    'tag'        => '<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>',
+    'smile'      => '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>',
+    'heart'      => '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
     'heart-fill' => '<svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-    'comment'    => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
-    'share'      => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
-    'save'       => '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+    'comment'    => '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+    'share'      => '<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>',
     'dots'       => '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
     'verified'   => '<svg width="13" height="13" viewBox="0 0 24 24" fill="#0284c7"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'
   ];
-  return $icons[$name] ?? '';
+  if (!isset($icons[$name])) return '';
+  return str_starts_with($icons[$name], '<svg') 
+    ? $icons[$name] 
+    : "<svg width=\"$size\" height=\"$size\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\">{$icons[$name]}</svg>";
 }
 
 $navMenus = [
@@ -129,7 +132,6 @@ $trends = [
 </head>
 <body class="full-layout">
 
-  
   <header class="site-navbar">
     <div class="navbar-container">
       <a href="index.php?page=dashboard" class="brand-logo" title="SolidMedia">
@@ -137,9 +139,8 @@ $trends = [
         <span>SolidMedia</span>
       </a>
 
-      
       <div class="navbar-search">
-        <span class="navbar-search-icon"><?= icon('search') ?></span>
+        <span class="navbar-search-icon"><?= icon('search', 15) ?></span>
         <input type="text" class="navbar-search-input" placeholder="Cari mahasiswa, postingan, atau topik..." aria-label="Cari">
       </div>
 
@@ -147,25 +148,20 @@ $trends = [
         <a href="index.php?page=home" class="nav-link">Beranda</a>
         <a href="index.php?page=dashboard" class="nav-link" style="color:#0284c7;font-weight:600;">Feed</a>
 
-        
         <a href="index.php?page=dashboard" class="nav-user-badge" title="Profil <?= htmlspecialchars($userName) ?>">
           <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="nav-user-avatar">
           <span style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><?= htmlspecialchars($userName) ?></span>
         </a>
 
-        
         <a href="index.php?page=logout" class="nav-btn-outline" style="color:#dc2626;border-color:#fca5a5;" title="Keluar">Keluar</a>
       </nav>
     </div>
   </header>
 
-  
   <main class="dashboard-layout">
 
-    
     <aside class="dashboard-sidebar-left">
       <div class="left-nav-card">
-        
         <div class="left-user-summary">
           <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="left-user-avatar">
           <div class="left-user-meta">
@@ -174,7 +170,6 @@ $trends = [
           </div>
         </div>
 
-        
         <ul class="nav-menu-list">
           <?php foreach ($navMenus as $menu): ?>
             <li>
@@ -193,25 +188,21 @@ $trends = [
           <?php endforeach; ?>
         </ul>
 
-        
         <a href="#buat-postingan" class="btn-quick-post">
-          <?= icon('plus') ?>
+          <?= icon('plus', 15) ?>
           <span>Buat Postingan</span>
         </a>
       </div>
     </aside>
 
-    
     <section class="dashboard-feed-center">
 
-      
       <?php if (!empty($flash)): ?>
         <div class="alert-box alert-<?= htmlspecialchars($flash['type']) ?>" style="margin-bottom:18px;">
           <?= htmlspecialchars($flash['message']) ?>
         </div>
       <?php endif; ?>
 
-      
       <div class="stories-bar" aria-label="Cerita Mahasiswa">
         <?php foreach ($stories as $s): ?>
           <div class="story-item" title="<?= htmlspecialchars($s['name']) ?>">
@@ -226,7 +217,6 @@ $trends = [
         <?php endforeach; ?>
       </div>
 
-      
       <div class="create-post-card" id="buat-postingan">
         <div class="create-post-top">
           <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="create-post-avatar">
@@ -243,7 +233,6 @@ $trends = [
         </div>
       </div>
 
-      
       <?php foreach ($posts as $p): ?>
         <article class="post-card">
           <header class="post-header">
@@ -272,12 +261,12 @@ $trends = [
           <div class="post-actions">
             <div class="action-buttons-left">
               <button type="button" class="action-icon-btn <?= !empty($p['liked']) ? 'liked' : '' ?>" aria-label="Suka">
-                <?= icon(!empty($p['liked']) ? 'heart-fill' : 'heart') ?>
+                <?= icon(!empty($p['liked']) ? 'heart-fill' : 'heart', 22) ?>
               </button>
-              <button type="button" class="action-icon-btn" aria-label="Komentar"><?= icon('comment') ?></button>
-              <button type="button" class="action-icon-btn" aria-label="Bagikan"><?= icon('share') ?></button>
+              <button type="button" class="action-icon-btn" aria-label="Komentar"><?= icon('comment', 22) ?></button>
+              <button type="button" class="action-icon-btn" aria-label="Bagikan"><?= icon('share', 22) ?></button>
             </div>
-            <button type="button" class="action-icon-btn" aria-label="Simpan"><?= icon('save') ?></button>
+            <button type="button" class="action-icon-btn" aria-label="Simpan"><?= icon('save', 21) ?></button>
           </div>
 
           <div class="post-details">
@@ -308,10 +297,8 @@ $trends = [
 
     </section>
 
-    
     <aside class="dashboard-sidebar-right">
 
-      
       <div class="sidebar-user-card">
         <div class="sidebar-profile">
           <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="sidebar-avatar">
@@ -337,7 +324,6 @@ $trends = [
         <a href="index.php?page=logout" class="sidebar-logout-btn">Keluar dari Akun</a>
       </div>
 
-      
       <div class="suggestions-card">
         <div class="suggestions-title">
           <span>Saran Teman Mahasiswa</span>
@@ -357,7 +343,6 @@ $trends = [
         <?php endforeach; ?>
       </div>
 
-      
       <div class="trending-card">
         <div class="trending-header">Topik Hangat di UNJ</div>
         <div class="trending-list">
@@ -371,7 +356,6 @@ $trends = [
         </div>
       </div>
 
-      
       <div class="sidebar-footer-links">
         <a href="#tentang">Tentang</a> • <a href="#bantuan">Bantuan</a> • <a href="#privasi">Privasi</a> • <a href="#ketentuan">Ketentuan</a><br>
         &copy; 2026 SolidMedia • UTS PPW Kelompok 5
@@ -381,7 +365,6 @@ $trends = [
 
   </main>
 
-  
   <footer class="site-footer">
     <p>&copy; 2026 SolidMedia - UTS Perancangan dan Pemrograman Website • S1 Ilmu Komputer Universitas Negeri Jakarta</p>
   </footer>
