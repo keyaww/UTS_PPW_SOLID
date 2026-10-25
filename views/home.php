@@ -7,11 +7,8 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SolidMedia - Ruang kumpul anak Ilkom UNJ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Halaman Awal</title>
+  <link rel="stylesheet" href="style.css?v=<?= time() ?>">
 </head>
 <body class="full-layout home-page">
 
@@ -27,8 +24,9 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
         <a href="#tanya" class="nav-link hm-nav-anchor">Tanya</a>
 
         <?php if ($currentUser): ?>
-          <a href="index.php?page=dashboard" class="nav-btn-primary">Ke Dashboard</a>
-          <a href="index.php?page=logout" class="nav-btn-outline">Keluar</a>
+          <a href="index.php?page=dashboard" class="nav-link">Dashboard</a>
+          <a href="index.php?page=feed" class="nav-btn-primary">Ke Feed</a>
+          <a href="index.php?page=logout" class="nav-btn-outline" style="color: #dc2626;">Keluar</a>
         <?php else: ?>
           <a href="index.php?page=login" class="nav-btn-outline">Masuk</a>
           <a href="index.php?page=register" class="nav-btn-primary">Daftar</a>
@@ -213,7 +211,8 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
       <div class="hm-cta-block">
         <h2>Ada kabar dari kelas hari ini?<br><em>Mulai dari sini.</em></h2>
         <?php if ($currentUser): ?>
-          <a href="index.php?page=dashboard" class="hm-btn hm-btn-accent">Buka dashboard</a>
+          <a href="index.php?page=dashboard" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px;">Ke Dashboard</a>
+          <a href="index.php?page=feed" class="btn-submit" style="height: 32px; padding: 0 20px; font-size: 12px;">Buka Halaman Feed &rarr;</a>
         <?php else: ?>
           <a href="index.php?page=register" class="hm-btn hm-btn-accent">Buat akun sekarang</a>
         <?php endif; ?>

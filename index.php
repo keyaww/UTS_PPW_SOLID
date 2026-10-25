@@ -83,12 +83,20 @@ switch ($page) {
         require_once __DIR__ . '/views/login.php';
         break;
 
-    // Ini tugas dzammar
+    // Dashboard (Status Berhasil Login)
     case 'dashboard':
         require_auth();
 
         $flash = get_flash();
         require_once __DIR__ . '/views/dashboard.php';
+        break;
+
+    // Feed Media Sosial
+    case 'feed':
+        require_auth();
+
+        $flash = get_flash();
+        require_once __DIR__ . '/views/feed.php';
         break;
 
     // Logout
