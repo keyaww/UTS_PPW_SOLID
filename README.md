@@ -18,28 +18,45 @@ Sesuai instruksi soal ujian:
 | Anggota | Peran | File Tugas | Deskripsi Pekerjaan |
 | :--- | :--- | :--- | :--- |
 | **Backend Lead** | Backend & Routing | `index.php`, `includes/*`, `data/*` | Mengatur arsitektur rute, proteksi sesi, validasi form, dan database JSON. |
-| **Keya** | Frontend Auth | `views/login.php`, `views/register.php` | Desain form Login dan Register (UI Card murni HTML & CSS). |
-| **Sakha** | Frontend Landing | `views/home.php` | Mendesain Halaman Awal / Beranda pengenalan website. |
-| **Dzammar** | Frontend Feed | `views/dashboard.php` | Mendesain Halaman Berhasil Login (Feed medsos ala Instagram/Facebook). |
+| **Keya** | Frontend Auth | `views/login.php`, `views/register.php` | Desain form Login dan Register. |
+| **Dzammar** | Frontend Dashboard & Feed | `views/dashboard.php`, `views/feed.php` | Mendesain Halaman Dashboard (publik & status login) serta Feed Media Sosial. |
+
+---
+
+## 🔄 Alur Navigasi Rute (Workflow)
+
+```text
+Dashboard (Akses awal / Publik, bisa dibuka even belum login)
+   │
+   ├── [Jika Belum Login] ──> Klik Masuk ──> Route Login (?page=login)
+   │                                               │
+   │                                         (Submit Valid)
+   │                                               ▼
+   └── [Jika Sudah Login] <────────────────────────┘ (Langsung ke Dashboard)
+          │
+          ├── Menampilkan pesan "Anda Berhasil Login!" & Ringkasan Akun
+          │
+          └── Klik Tombol "Buka Halaman Feed" ──> Route Feed (?page=feed)
+```
 
 ---
 
 ## 🛣️ Dokumentasi Routing (Backend Router)
 
-Seluruh navigasi diatur secara terpusat oleh **`index.php`** menggunakan parameter query `?page=...`. Sistem ini juga dilengkapi jalan pintas file langsung (*direct URL*).
+Seluruh navigasi diatur secara terpusat oleh **`index.php`** menggunakan parameter query `?page=...` (default ke `dashboard`). Sistem ini juga dilengkapi jalan pintas file langsung (*direct URL*).
 
 | Parameter Rute | Direct URL Shortcut | Metode | Akses | File Tampilan | Keterangan |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `?page=home` | `index.php` | `GET` | Publik | `views/home.php` | **Halaman Awal** (Tugas Sakha). Halaman pembuka website. |
+| `?page=dashboard` | `dashboard.php` / `index.php` | `GET` | **Publik** | `views/dashboard.php` | **Halaman Dashboard**. Bisa diakses *even belum login* (status tamu) maupun setelah login (status aktif + tombol ke feed). |
+| `?page=login` | `login.php` | `GET` / `POST` | Tamu | `views/login.php` | **Masuk Akun** (Tugas Keya). Memverifikasi kredensial. Jika sukses, langsung diarahkan ke `dashboard`. |
 | `?page=register` | `register.php` | `GET` / `POST` | Tamu | `views/register.php` | **Pendaftaran Akun** (Tugas Keya). Menyimpan akun baru ke `data/users.json`. |
-| `?page=login` | `login.php` | `GET` / `POST` | Tamu | `views/login.php` | **Masuk Akun** (Tugas Keya). Memverifikasi kredensial dan set session. |
-| `?page=dashboard` | `dashboard.php` | `GET` | **Wajib Login** | `views/dashboard.php` | **Halaman Dashboard**. Menampilkan status sukses login dan tombol ke feed. |
-| `?page=feed` | `feed.php` | `GET` | **Wajib Login** | `views/feed.php` | **Halaman Feed** (Tugas Dzammar). Menampilkan feed media sosial. |
-| `?page=logout` | `logout.php` | `GET` | Member | - | Menghapus session dan mengarahkan kembali ke login. |
+| `?page=feed` | `feed.php` | `GET` | **Wajib Login** | `views/feed.php` | **Halaman Feed** (Tugas Dzammar). Menampilkan postingan, cerita, sidebar, dan interaksi medsos. |
+| `?page=logout` | `logout.php` | `GET` | Member | - | Menghapus session dan mengarahkan kembali ke dashboard / login. |
 
 ### Proteksi Rute (Route Guard):
-* **Halaman Dashboard & Feed**: Jika user yang **belum login** mencoba membuka `dashboard.php` atau `feed.php`, sistem otomatis menolak akses dan me-redirect ke `login.php` dengan pesan error: *"Silakan masuk ke akun Anda terlebih dahulu!"*.
-* **Halaman Login & Register**: Jika user yang **sudah login** mencoba membuka halaman ini, sistem otomatis mengarahkannya langsung ke `dashboard.php`.
+* **Halaman Dashboard**: Dapat diakses oleh **siapa saja (even belum login)**. Jika belum login, tampil status tamu dan opsi masuk/daftar. Jika sudah login, tampil ucapan selamat *"Anda Berhasil Login!"* dan tombol ke feed.
+* **Halaman Feed**: Wajib login (`require_auth`). Jika pengguna yang **belum login** mencoba mengakses, sistem otomatis me-redirect ke `login.php` dengan pesan error: *"Silakan masuk ke akun Anda terlebih dahulu!"*.
+* **Halaman Login & Register**: Khusus tamu (`require_guest`). Jika user yang **sudah login** mencoba membuka, sistem otomatis mengarahkannya langsung ke `dashboard.php`.
 
 ---
 
@@ -47,14 +64,14 @@ Seluruh navigasi diatur secara terpusat oleh **`index.php`** menggunakan paramet
 
 ```text
 UTS_PPW_SOLID/
-├── index.php             # Router utama & pengendali rute
+├── index.php             # Router utama (default rute: dashboard)
+├── dashboard.php         # Akses langsung dashboard (?page=dashboard)
 ├── login.php             # Akses langsung login (?page=login)
 ├── register.php          # Akses langsung register (?page=register)
-├── dashboard.php         # Akses langsung dashboard (?page=dashboard)
 ├── feed.php              # Akses langsung feed (?page=feed)
 ├── logout.php            # Akses langsung logout (?page=logout)
 ├── style.css             # File stylesheet CSS utama
-├── README.md             # Dokumentasi proyek & rute
+├── README.md             # Dokumentasi proyek & alur rute
 │
 ├── includes/
 │   ├── auth.php          # Manajemen session, proteksi rute, dan notifikasi flash
@@ -64,28 +81,11 @@ UTS_PPW_SOLID/
 │   └── users.json        # File JSON penyimpan data akun pengguna
 │
 └── views/
-    ├── home.php          # [TUGAS SAKHA] Template Halaman Awal
+    ├── dashboard.php     # Template Halaman Dashboard (Publik & Status Login)
     ├── login.php         # [TUGAS KEYA] Template Form Login
     ├── register.php      # [TUGAS KEYA] Template Form Register
-    ├── dashboard.php     # Template Halaman Status Berhasil Login
     └── feed.php          # [TUGAS DZAMMAR] Template Halaman Feed Medsos
 ```
-
----
-
-## 🛠️ Panduan Untuk Anggota Tim
-
-### 1. Untuk Sakha (Halaman Awal):
-* Buka file: **`views/home.php`**.
-* Silakan kembangkan desain beranda di area yang sudah ditandai `[Area Tugas Sakha]`.
-* Tambahkan informasi fitur platform, tagline menarik, banner, atau elemen visual lainnya.
-* Styling CSS bisa ditambahkan di file `style.css`.
-
-### 2. Untuk Dzammar (Halaman Berhasil Login):
-* Buka file: **`views/dashboard.php`**.
-* Silakan buat tampilan feed media sosial di area yang sudah ditandai `[Area Tugas Dzammar]`.
-* Anda bisa mencontoh layout Instagram / Facebook (misal: Stories lingkaran di atas, kartu postingan dengan gambar, tombol like/komentar, dan sidebar kanan).
-* Data akun pengguna yang sedang login tersedia di variabel PHP: `$currentUser['name']`, `$currentUser['username']`, dan `$currentUser['email']`.
 
 ---
 
@@ -96,6 +96,7 @@ UTS_PPW_SOLID/
    ```
    http://localhost/UTS-PPW/UTS_PPW_SOLID/
    ```
+   *(Secara default akan langsung membuka halaman Dashboard)*.
 3. Akun pengujian default:
    * **Email**: `demo@unj.ac.id` *(atau username: `mahasiswa_unj`)*
    * **Password**: `password123`

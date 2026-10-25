@@ -1,17 +1,17 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
 
-$page = isset($_GET['page']) ? trim($_GET['page']) : 'home';
+$page = isset($_GET['page']) ? trim($_GET['page']) : 'dashboard';
 
 switch ($page) {
 
-    // Ini tugas sakha
-    case 'home':
+    // Dashboard (Bisa diakses publik / belum login maupun sudah login)
+    case 'dashboard':
         $flash = get_flash();
-        require_once __DIR__ . '/views/home.php';
+        require_once __DIR__ . '/views/dashboard.php';
         break;
 
-    // Ini tugas keya
+    // Pendaftaran Akun (Tamu)
     case 'register':
         require_guest();
 
@@ -46,7 +46,7 @@ switch ($page) {
         require_once __DIR__ . '/views/register.php';
         break;
 
-    // Ini tugas keya
+    // Masuk Akun (Tamu)
     case 'login':
         require_guest();
 
@@ -83,15 +83,7 @@ switch ($page) {
         require_once __DIR__ . '/views/login.php';
         break;
 
-    // Dashboard (Status Berhasil Login)
-    case 'dashboard':
-        require_auth();
-
-        $flash = get_flash();
-        require_once __DIR__ . '/views/dashboard.php';
-        break;
-
-    // Feed Media Sosial
+    // Feed Media Sosial (Wajib Login)
     case 'feed':
         require_auth();
 
@@ -105,6 +97,6 @@ switch ($page) {
         break;
 
     default:
-        header('Location: index.php?page=home');
+        header('Location: index.php?page=dashboard');
         exit;
 }

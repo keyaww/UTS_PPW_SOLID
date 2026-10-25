@@ -42,7 +42,6 @@ if (!function_exists('icon')) {
 $navMenus = [
   ['icon' => 'home',     'label' => 'Feed Utama',        'url' => 'index.php?page=feed', 'active' => true],
   ['icon' => 'verified', 'label' => 'Dashboard Status',  'url' => 'index.php?page=dashboard'],
-  ['icon' => 'globe',    'label' => 'Halaman Awal',      'url' => 'index.php?page=home'],
   ['icon' => 'bell',     'label' => 'Notifikasi',        'url' => '#notifikasi', 'badge' => 3, 'badge_bg' => '#ef4444'],
   ['icon' => 'mail',     'label' => 'Pesan Kampus',      'url' => '#pesan',      'badge' => 1, 'badge_bg' => '#0284c7'],
   ['icon' => 'users',    'label' => 'Komunitas Ilkom',   'url' => '#komunitas'],
@@ -148,7 +147,6 @@ $trends = [
       </div>
 
       <nav class="navbar-nav">
-        <a href="index.php?page=home" class="nav-link">Beranda</a>
         <a href="index.php?page=dashboard" class="nav-link">Dashboard</a>
         <a href="index.php?page=feed" class="nav-link" style="color:#0284c7;font-weight:600;">Feed</a>
 
