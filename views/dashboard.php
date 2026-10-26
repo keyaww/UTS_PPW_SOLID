@@ -44,6 +44,7 @@ if (!function_exists('icon')) {
       </a>
 
       <nav class="navbar-nav">
+        <a href="index.php?page=home" class="nav-link">Beranda</a>
         <a href="index.php?page=dashboard" class="nav-link" style="color:#0284c7;font-weight:600;">Dashboard</a>
 
         <?php if ($isLoggedIn): ?>
