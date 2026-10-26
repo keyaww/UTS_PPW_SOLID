@@ -20,7 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Card Container */
 .auth-card {
   background: #ffffff;
   width: 100%;
@@ -30,7 +29,6 @@ body {
   padding: 26px 34px 22px 34px;
 }
 
-/* Card Title */
 .auth-title {
   font-size: 16px;
   font-weight: 700;
@@ -40,7 +38,6 @@ body {
   letter-spacing: -0.2px;
 }
 
-/* Form Groups */
 .form-group {
   margin-bottom: 12px;
   text-align: left;
@@ -55,7 +52,6 @@ body {
   line-height: 1.2;
 }
 
-/* Input Wrapper & Inputs */
 .input-wrapper {
   position: relative;
   width: 100%;
@@ -91,7 +87,6 @@ body {
   padding-right: 32px;
 }
 
-/* Eye Icon */
 .eye-icon-btn {
   position: absolute;
   right: 8px;
@@ -112,7 +107,6 @@ body {
   display: block;
 }
 
-/* Action Buttons */
 .btn-row-right {
   display: flex;
   justify-content: flex-end;
@@ -152,7 +146,6 @@ body {
   transform: scale(0.98);
 }
 
-/* Divider Line */
 .auth-divider {
   border: none;
   border-top: 1px solid #cacaca;
@@ -167,7 +160,6 @@ body {
   font-weight: 400;
 }
 
-/* Social Buttons */
 .social-buttons {
   display: flex;
   justify-content: center;
@@ -199,7 +191,6 @@ body {
   transform: translateY(0);
 }
 
-/* Footer Text & Links */
 .auth-footer {
   font-size: 10px;
   text-align: center;
@@ -218,7 +209,6 @@ body {
   text-decoration: underline;
 }
 
-/* Alert */
 .alert-box {
   width: 100%;
   padding: 9px 12px;
@@ -248,7 +238,6 @@ body {
   color: #0969da;
 }
 
-/* Full layout */
 body.full-layout {
   display: block;
   padding: 0;
@@ -258,7 +247,6 @@ body.full-layout {
   min-height: 100vh;
 }
 
-/* Navbar */
 .site-navbar {
   background: #ffffff;
   border-bottom: 1px solid #dbdbdb;
@@ -358,9 +346,6 @@ body.full-layout {
   border: 1px solid #6ab7ff;
 }
 
-/* ========================================================
-   Feed Mahasiswa (Tugas Dzammar - Tampilan Ringkas & Bersih)
-======================================================== */
 .feed-container {
   max-width: 600px;
   margin: 24px auto;
@@ -456,7 +441,6 @@ body.full-layout {
   filter: brightness(0.96);
 }
 
-/* Post Card */
 .post-header {
   display: flex;
   align-items: center;
@@ -618,9 +602,6 @@ body.full-layout {
   color: #0369a1;
 }
 
-/* ========================================================
-   Halaman Dashboard (Status Berhasil Login)
-======================================================== */
 .dashboard-welcome-container {
   max-width: 620px;
   margin: 40px auto;
@@ -771,11 +752,8 @@ body.full-layout {
   margin-top: 20px;
 }
 
-/* ========================================================
-   Halaman Beranda / Landing Page (Tugas Sakha)
-======================================================== */
 .home-page {
-  /* Palet tim (diambil dari halaman login) */
+  
   --hm-blue: #6db4fb;
   --hm-cyan: #6acde8;
   --hm-mint: #6efbc2;
@@ -812,8 +790,7 @@ body.full-layout {
 html { scroll-behavior: smooth; }
 .home-page * { box-sizing: border-box; }
 .home-page a { text-decoration: none; color: inherit; }
-/* :where() membuat reset ini berspesifisitas 0, sehingga margin/padding
-   di class .hm-* (lead, kicker, panel, dll.) tidak lagi tertimpa. */
+
 .home-page :where(h1, h2, h3, h4) { margin: 0; font-weight: 400; }
 .home-page :where(p) { margin: 0; }
 .home-page :where(ol, ul) { margin: 0; padding: 0; list-style: none; }
@@ -824,7 +801,6 @@ html { scroll-behavior: smooth; }
 
 .home-page :focus-visible { outline: 2px solid var(--hm-accent); outline-offset: 3px; }
 
-/* ---------- Navbar ---------- */
 .home-page .site-navbar {
   position: sticky; top: 0; z-index: 50;
   background: rgba(255, 255, 255, .88);
@@ -859,7 +835,6 @@ html { scroll-behavior: smooth; }
 .home-page .nav-btn-outline { background: #fff; border: 1px solid #b8cfdd; }
 .home-page .nav-btn-outline:hover { border-color: var(--hm-accent); color: var(--hm-accent); }
 
-/* ---------- Tombol ---------- */
 .hm-btn {
   display: inline-block; padding: 13px 24px; border-radius: 8px;
   font-weight: 500; font-size: .98rem; border: 1px solid transparent;
@@ -878,7 +853,6 @@ html { scroll-behavior: smooth; }
 
 .hm-kicker { color: var(--hm-navy); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 18px; }
 
-/* ---------- Hero ---------- */
 .hm-hero { padding: 84px 0 96px; }
 .hm-hero-grid {
   display: grid; grid-template-columns: 1.25fr 1fr;
@@ -894,7 +868,6 @@ html { scroll-behavior: smooth; }
 .hm-lead { margin: 26px 0 34px; max-width: 46ch; font-size: 1.1rem; color: var(--hm-ink-2); }
 .hm-cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* contoh feed */
 .hm-preview { margin: 0; display: grid; gap: 14px; }
 .hm-preview figcaption { color: var(--hm-ink-2); }
 .hm-post {
@@ -918,7 +891,6 @@ html { scroll-behavior: smooth; }
 .hm-post-reply { margin-left: 36px; box-shadow: none; background: rgba(255, 255, 255, .7); }
 .hm-post-reply .hm-initial { background: var(--hm-mint-soft); }
 
-/* ---------- Section umum ---------- */
 .hm-section { padding: 96px 0; }
 .hm-section h2 { font-family: var(--hm-serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.01em; }
 
@@ -926,7 +898,6 @@ html { scroll-behavior: smooth; }
 .hm-split-head { position: sticky; top: 96px; }
 .hm-split-head .hm-muted { margin-top: 16px; max-width: 32ch; color: var(--hm-ink-2); }
 
-/* ---------- Daftar fitur (panel putih) ---------- */
 .hm-list,
 .hm-faq-list {
   background: #fff;
@@ -951,7 +922,6 @@ html { scroll-behavior: smooth; }
 }
 .hm-list li:nth-child(even) .hm-tag { background: var(--hm-mint-soft); }
 
-/* ---------- Langkah ---------- */
 .hm-section-ink { background: var(--hm-grad-vivid); color: var(--hm-ink); }
 .hm-section-ink .hm-kicker { color: var(--hm-navy); }
 .hm-h2-lg { max-width: 18ch; margin-bottom: 56px; }
@@ -962,7 +932,6 @@ html { scroll-behavior: smooth; }
 .hm-steps h3 { font-family: var(--hm-serif); font-size: 2.2rem; line-height: 1.1; margin: 14px 0 10px; }
 .hm-steps p { color: var(--hm-ink); max-width: 30ch; }
 
-/* ---------- FAQ ---------- */
 .hm-faq { border-top: 1px solid var(--hm-line); }
 .hm-faq:first-child { border-top: 0; }
 .hm-faq summary {
@@ -979,7 +948,6 @@ html { scroll-behavior: smooth; }
 .hm-faq summary:hover { color: var(--hm-accent); }
 .hm-faq p { padding: 0 40px 24px 0; color: var(--hm-ink-2); max-width: 56ch; }
 
-/* ---------- Blok ajakan ---------- */
 .hm-cta-block {
   margin: 96px 0 96px; padding: 52px 56px;
   background: #fff; color: var(--hm-ink);
@@ -990,7 +958,6 @@ html { scroll-behavior: smooth; }
 .hm-cta-block h2 { font-family: var(--hm-serif); font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; }
 .hm-cta-block em { font-style: italic; color: var(--hm-accent); }
 
-/* ---------- Footer ---------- */
 .hm-footer { background: #fff; border-top: 1px solid rgba(31, 41, 51, .08); padding-top: 48px; }
 .hm-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
 .hm-footer .hm-muted { margin-top: 10px; font-size: .92rem; max-width: 30ch; color: var(--hm-muted); }
@@ -999,16 +966,12 @@ html { scroll-behavior: smooth; }
 .hm-footer nav a:hover { color: var(--hm-link); }
 .hm-copy { margin-top: 48px; padding: 20px 28px; border-top: 1px solid var(--hm-line); text-align: center; color: var(--hm-muted); }
 
-/* ---------- Responsif ---------- */
-
-/* Laptop kecil & iPad landscape (<= 1100px) */
 @media (max-width: 1100px) {
   .hm-hero-grid { gap: 48px; }
   .hm-split { gap: 44px; }
   .hm-cta-block { padding: 44px 40px; }
 }
 
-/* iPad portrait & tablet (<= 920px) */
 @media (max-width: 920px) {
   .hm-wrap,
   .home-page .navbar-container { padding-left: 32px; padding-right: 32px; }
@@ -1027,7 +990,6 @@ html { scroll-behavior: smooth; }
   .home-page .nav-link { padding: 8px; }
 }
 
-/* Tablet kecil (<= 700px): langkah & footer menyesuaikan */
 @media (max-width: 700px) {
   .hm-steps { grid-template-columns: 1fr; }
   .hm-steps li, .hm-steps li + li { padding: 24px 0; border-left: 0; }
@@ -1037,12 +999,11 @@ html { scroll-behavior: smooth; }
   .hm-footer-grid > div:first-child { grid-column: 1 / -1; }
 }
 
-/* Ponsel (<= 600px) */
 @media (max-width: 600px) {
   .hm-wrap,
   .home-page .navbar-container { padding-left: 20px; padding-right: 20px; }
 
-  /* Navbar: satu baris sejajar, logo di kiri, tombol di kanan */
+  
   .home-page .navbar-container { flex-wrap: nowrap; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
   .home-page .brand-logo { font-size: 1.5rem; flex-shrink: 0; }
   .home-page .navbar-nav { flex-wrap: nowrap; justify-content: flex-end; gap: 8px; }
@@ -1050,7 +1011,7 @@ html { scroll-behavior: smooth; }
   .home-page .nav-btn-primary,
   .home-page .nav-btn-outline { padding: 9px 14px; font-size: .86rem; white-space: nowrap; }
 
-  /* Hero */
+  
   .hm-hero { padding: 40px 0 56px; }
   .hm-title { font-size: 2.6rem; max-width: none; }
   .hm-lead { font-size: 1rem; margin: 20px 0 28px; }
@@ -1058,7 +1019,7 @@ html { scroll-behavior: smooth; }
   .hm-cta-row .hm-btn { width: 100%; text-align: center; }
   .hm-post-reply { margin-left: 16px; }
 
-  /* Isi halaman */
+  
   .hm-section { padding: 56px 0; }
   .hm-h2-lg { margin-bottom: 36px; }
 
@@ -1077,7 +1038,6 @@ html { scroll-behavior: smooth; }
   .hm-cta-block .hm-btn { text-align: center; }
 }
 
-/* Ponsel kecil (<= 380px) */
 @media (max-width: 380px) {
   .home-page .navbar-container { gap: 8px; }
   .home-page .brand-logo { font-size: 1.35rem; }
