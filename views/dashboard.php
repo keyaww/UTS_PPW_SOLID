@@ -35,7 +35,6 @@ if (!function_exists('icon')) {
 </head>
 <body class="full-layout">
 
-  <!-- Navbar -->
   <header class="site-navbar">
     <div class="navbar-container">
       <a href="index.php?page=dashboard" class="brand-logo" title="SolidMedia">
@@ -64,7 +63,6 @@ if (!function_exists('icon')) {
     </div>
   </header>
 
-  <!-- Konten Utama Dashboard -->
   <main class="dashboard-welcome-container" style="max-width: 560px; margin: 40px auto; padding: 0 20px;">
 
     <?php if (!empty($flash)): ?>
@@ -77,7 +75,6 @@ if (!function_exists('icon')) {
 
       <?php if ($isLoggedIn): ?>
 
-        <!-- ================= KEADAAN 1: USER SUDAH LOGIN ================= -->
         <div class="dashboard-success-badge-wrap" style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #86efac; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: #16a34a;" title="Berhasil Masuk">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -92,7 +89,6 @@ if (!function_exists('icon')) {
           Selamat datang kembali di platform <strong>SolidMedia</strong>! Akun Anda telah berhasil diautentikasi dan sesi Anda kini aktif.
         </p>
 
-        <!-- Informasi Pengguna / Sesi Aktif -->
         <div class="dashboard-user-card-inner" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 14px; text-align: left;">
           <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="dashboard-user-avatar" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #6ab7ff; flex-shrink: 0;">
           <div class="dashboard-user-info" style="flex: 1; min-width: 0;">
@@ -117,7 +113,6 @@ if (!function_exists('icon')) {
           </div>
         </div>
 
-        <!-- Tombol Utama Direct ke Feed -->
         <a href="index.php?page=feed" class="dashboard-btn-cta-feed" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 320px; background: linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%); color: #1f2937; border: 1px solid #93c5fd; border-radius: 8px; height: 42px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(106, 183, 255, 0.28); margin: 0 auto; transition: all 0.2s;">
           <span>Buka Halaman Feed</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -126,14 +121,12 @@ if (!function_exists('icon')) {
           </svg>
         </a>
 
-        <!-- Tombol Sekunder -->
         <div class="dashboard-secondary-links" style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
           <a href="index.php?page=logout" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px; font-size: 11.5px; color: #dc2626; border-color: #fca5a5;">Keluar Akun</a>
         </div>
 
       <?php else: ?>
 
-        <!-- ================= KEADAAN 2: USER BELUM LOGIN (TAMU) ================= -->
         <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #e0f2fe 0%, #d1fae5 100%); border: 2px solid #93c5fd; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: #0284c7;" title="Selamat Datang">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -148,7 +141,6 @@ if (!function_exists('icon')) {
           Platform media sosial mahasiswa Ilmu Komputer UNJ. Silakan masuk ke akun Anda atau daftar untuk mulai melihat postingan dan berinteraksi di Feed.
         </p>
 
-        <!-- Status Tamu -->
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; text-align: left;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
             <span style="font-size: 12px; font-weight: 700; color: #1e293b;">Status Kunjungan</span>
@@ -161,7 +153,6 @@ if (!function_exists('icon')) {
           </p>
         </div>
 
-        <!-- Tombol Aksi Masuk / Daftar -->
         <a href="index.php?page=login" class="dashboard-btn-cta-feed" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 320px; background: linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%); color: #1f2937; border: 1px solid #93c5fd; border-radius: 8px; height: 42px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(106, 183, 255, 0.28); margin: 0 auto; transition: all 0.2s;">
           <span>Masuk ke Akun (Login)</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -170,7 +161,6 @@ if (!function_exists('icon')) {
           </svg>
         </a>
 
-        <!-- Tombol Sekunder Daftar -->
         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
           <a href="index.php?page=register" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px; font-size: 11.5px;">Buat Akun Baru</a>
         </div>

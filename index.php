@@ -2,22 +2,18 @@
 require_once __DIR__ . '/includes/auth.php';
 
 $page = isset($_GET['page']) ? trim($_GET['page']) : 'home';
+$view = null;
 
 switch ($page) {
 
-    // Halaman Awal / Beranda (Tugas Sakha)
     case 'home':
-        $flash = get_flash();
-        require_once __DIR__ . '/views/home.php';
+        $view = 'home.php';
         break;
 
-    // Dashboard (Bisa diakses publik / belum login maupun sudah login - Tugas Dzammar)
     case 'dashboard':
-        $flash = get_flash();
-        require_once __DIR__ . '/views/dashboard.php';
+        $view = 'dashboard.php';
         break;
 
-    // Pendaftaran Akun (Tamu - Tugas Keya)
     case 'register':
         require_guest();
 
@@ -48,11 +44,9 @@ switch ($page) {
             }
         }
 
-        $flash = get_flash();
-        require_once __DIR__ . '/views/register.php';
+        $view = 'register.php';
         break;
 
-    // Masuk Akun (Tamu - Tugas Keya)
     case 'login':
         require_guest();
 
@@ -85,19 +79,14 @@ switch ($page) {
             }
         }
 
-        $flash = get_flash();
-        require_once __DIR__ . '/views/login.php';
+        $view = 'login.php';
         break;
 
-    // Feed Media Sosial (Wajib Login - Tugas Dzammar)
     case 'feed':
         require_auth();
-
-        $flash = get_flash();
-        require_once __DIR__ . '/views/feed.php';
+        $view = 'feed.php';
         break;
 
-    // Logout
     case 'logout':
         logout_user();
         break;
@@ -105,4 +94,12 @@ switch ($page) {
     default:
         header('Location: index.php?page=home');
         exit;
+}
+
+if ($view && file_exists(__DIR__ . '/views/' . $view)) {
+    $flash = get_flash();
+    require_once __DIR__ . '/views/' . $view;
+} else {
+    header('Location: index.php?page=home');
+    exit;
 }

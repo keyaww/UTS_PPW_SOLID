@@ -1,6 +1,3 @@
-<?php
-// Ini tugas Keya
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>

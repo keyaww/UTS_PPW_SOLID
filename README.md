@@ -7,9 +7,9 @@ Project Ujian Tengah Semester (UTS) Ganjil 125 - S1 Ilmu Komputer, Universitas N
 ## ⚠️ Batasan & Ketentuan Pengerjaan
 Sesuai instruksi soal ujian:
 * ❌ **Tanpa JavaScript sama sekali**
-* ❌ **Tanpa Database SQL** (MySQL, SQLite, PostgreSQL, dll)
+* ❌ **Tanpa Database sama sekali** (Murni tanpa SQL, SQLite, atau media database lainnya)
 * ❌ **Tanpa Framework** (Bootstrap, Tailwind, Laravel, dll)
-* ✔️ **100% Pure HTML5, Pure CSS3, dan Pure Native PHP**
+* ✔️ **100% Pure HTML5, Pure CSS3, dan Pure Native PHP Session**
 
 ---
 
@@ -17,7 +17,7 @@ Sesuai instruksi soal ujian:
 
 | Anggota | Peran | File Tugas | Deskripsi Pekerjaan |
 | :--- | :--- | :--- | :--- |
-| **Backend Lead** | Backend & Routing | `index.php`, `includes/*`, `data/*` | Mengatur arsitektur rute, proteksi sesi, validasi form, dan database JSON. |
+| **Backend Lead** | Backend & Routing | `index.php`, `includes/*` | Mengatur arsitektur rute, proteksi sesi, validasi form, dan autentikasi berbasis PHP Session. |
 | **Keya** | Frontend Auth | `views/login.php`, `views/register.php` | Desain form Login dan Register (UI Card murni HTML & CSS). |
 | **Sakha** | Frontend Landing | `views/home.php` | Mendesain Halaman Awal / Beranda pengenalan website. |
 | **Dzammar** | Frontend Dashboard & Feed | `views/dashboard.php`, `views/feed.php` | Mendesain Halaman Dashboard (ringkasan status) dan Feed Media Sosial. |
@@ -49,9 +49,9 @@ Seluruh navigasi diatur secara terpusat oleh **`index.php`** menggunakan paramet
 | `?page=home` | `home.php` / `index.php` | `GET` | **Publik** | `views/home.php` | **Halaman Awal** (Tugas Sakha). Halaman pembuka website. |
 | `?page=dashboard` | `dashboard.php` | `GET` | **Publik** | `views/dashboard.php` | **Halaman Dashboard** (Tugas Dzammar). Menampilkan status selamat datang & ringkasan akun. |
 | `?page=login` | `login.php` | `GET` / `POST` | Tamu | `views/login.php` | **Masuk Akun** (Tugas Keya). Memverifikasi kredensial. Jika sukses, diarahkan ke `dashboard`. |
-| `?page=register` | `register.php` | `GET` / `POST` | Tamu | `views/register.php` | **Pendaftaran Akun** (Tugas Keya). Menyimpan akun baru ke `data/users.json`. |
+| `?page=register` | `register.php` | `GET` / `POST` | Tamu | `views/register.php` | **Pendaftaran Akun** (Tugas Keya). Menyimpan akun ke dalam PHP Session. |
 | `?page=feed` | `feed.php` | `GET` | **Wajib Login** | `views/feed.php` | **Halaman Feed** (Tugas Dzammar). Menampilkan feed medsos, cerita, komentar, dan trending. |
-| `?page=logout` | `logout.php` | `GET` | Member | - | Menghapus session dan mengarahkan kembali ke halaman awal / login. |
+| `?page=logout` | `logout.php` | `GET` | Member | - | Menghapus session login dan mengarahkan kembali ke halaman login. |
 
 ### Proteksi Rute (Route Guard):
 * **Halaman Feed**: Wajib login (`require_auth`). Jika pengguna yang **belum login** mencoba mengakses, sistem otomatis me-redirect ke `login.php` dengan pesan error: *"Silakan masuk ke akun Anda terlebih dahulu!"*.
@@ -76,10 +76,7 @@ UTS_PPW_SOLID/
 │
 ├── includes/
 │   ├── auth.php          # Manajemen session, proteksi rute, dan notifikasi flash
-│   └── db.php            # Helper flat-file database (baca/tulis data/users.json)
-│
-├── data/
-│   └── users.json        # File JSON penyimpan data akun pengguna
+│   └── db.php            # Penyimpanan akun in-memory & session (murni tanpa database)
 │
 └── views/
     ├── home.php          # [TUGAS SAKHA] Template Halaman Awal / Beranda
@@ -93,11 +90,12 @@ UTS_PPW_SOLID/
 
 ## 🚀 Cara Menjalankan Proyek di XAMPP
 
-1. Buka **XAMPP Control Panel**, lalu klik **Start** pada modul **Apache** *(MySQL tidak perlu dijalankan)*.
+1. Buka **XAMPP Control Panel**, lalu klik **Start** pada modul **Apache** *(Database MySQL tidak perlu dijalankan karena murni tanpa database)*.
 2. Buka browser dan akses:
    ```
    http://localhost/UTS-PPW/UTS_PPW_SOLID/
    ```
-3. Akun pengujian default:
+3. Akun pengujian default (langsung siap pakai):
    * **Email**: `demo@unj.ac.id` *(atau username: `mahasiswa_unj`)*
    * **Password**: `password123`
+   *(Pengguna baru juga dapat langsung mendaftar via menu Register dan akun akan tersimpan di sesi browser saat itu juga)*

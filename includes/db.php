@@ -1,31 +1,29 @@
 <?php
-define('DATA_FILE', __DIR__ . '/../data/users.json');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Ambil semua user dari file JSON
 function get_all_users() {
-    if (!file_exists(DATA_FILE)) {
-        if (!is_dir(dirname(DATA_FILE))) {
-            mkdir(dirname(DATA_FILE), 0777, true);
-        }
-        file_put_contents(DATA_FILE, json_encode([], JSON_PRETTY_PRINT));
-        return [];
+    $default_users = [
+        [
+            'id' => 1,
+            'name' => 'Mahasiswa UNJ',
+            'username' => 'mahasiswa_unj',
+            'email' => 'demo@unj.ac.id',
+            'password' => '$2y$10$jWh4w1bST3RGz.w3e882eu.OnyLrdq1tLym7DS.TuuNA6a2vP1EYS',
+            'bio' => 'Mahasiswa S1 Ilmu Komputer UNJ. Belajar web development murni PHP Session, HTML, CSS!',
+            'avatar' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+            'created_at' => '2026-10-24 12:00:00'
+        ]
+    ];
+
+    if (!isset($_SESSION['registered_users']) || !is_array($_SESSION['registered_users'])) {
+        $_SESSION['registered_users'] = [];
     }
-    
-    $content = file_get_contents(DATA_FILE);
-    $users = json_decode($content, true);
-    return is_array($users) ? $users : [];
+
+    return array_merge($default_users, $_SESSION['registered_users']);
 }
 
-// Simpan data user ke file JSON
-function save_all_users($users) {
-    if (!is_dir(dirname(DATA_FILE))) {
-        mkdir(dirname(DATA_FILE), 0777, true);
-    }
-    $json = json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-    return file_put_contents(DATA_FILE, $json) !== false;
-}
-
-// Cari user berdasarkan email atau username
 function find_user($identifier) {
     $users = get_all_users();
     $lower = strtolower(trim($identifier));
@@ -38,7 +36,6 @@ function find_user($identifier) {
     return null;
 }
 
-// Cek apakah email/username sudah pernah didaftarkan
 function check_user_exists($email, $username = '') {
     $users = get_all_users();
     $lowerEmail = strtolower(trim($email));
@@ -55,7 +52,6 @@ function check_user_exists($email, $username = '') {
     return false;
 }
 
-// Tambah user baru ke JSON
 function create_user($name, $username, $email, $password) {
     $email = trim($email);
     $username = trim($username);
@@ -86,11 +82,11 @@ function create_user($name, $username, $email, $password) {
         'created_at' => date('Y-m-d H:i:s')
     ];
     
-    $users[] = $newUser;
-    
-    if (save_all_users($users)) {
-        return ['success' => true, 'message' => 'Pendaftaran akun berhasil!', 'user' => $newUser];
-    } else {
-        return ['success' => false, 'message' => 'Gagal menyimpan data akun.'];
+    if (!isset($_SESSION['registered_users']) || !is_array($_SESSION['registered_users'])) {
+        $_SESSION['registered_users'] = [];
     }
+    
+    $_SESSION['registered_users'][] = $newUser;
+    
+    return ['success' => true, 'message' => 'Akun berhasil dibuat! Silakan masuk.', 'user' => $newUser];
 }
