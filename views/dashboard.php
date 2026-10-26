@@ -1,58 +1,187 @@
 <?php
-// Ini tugas Dzammar
-$currentUser = get_current_user_data();
+$isLoggedIn  = is_logged_in();
+$currentUser = $isLoggedIn ? get_current_user_data() : null;
+
+$userName   = $currentUser['name'] ?? 'Tamu / Pengunjung';
+$userHandle = $currentUser['username'] ?? 'guest';
+$userEmail  = $currentUser['email'] ?? '';
+$userAvatar = !empty($currentUser['avatar']) ? $currentUser['avatar'] : 'https://ui-avatars.com/api/?name=Guest&background=e2e8f0&color=64748b&size=150';
+$userJoined = !empty($currentUser['created_at']) ? date('d M Y', strtotime($currentUser['created_at'])) : date('d M Y');
+
+if (!function_exists('icon')) {
+  function icon($name, $size = 18) {
+    static $icons = [
+      'logo'       => '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>',
+      'check'      => '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+      'arrow'      => '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+      'mail'       => '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+      'lock'       => '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+      'user'       => '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'
+    ];
+    if (!isset($icons[$name])) return '';
+    return str_starts_with($icons[$name], '<svg') 
+      ? $icons[$name] 
+      : "<svg width=\"$size\" height=\"$size\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">{$icons[$name]}</svg>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - SolidMedia</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Dashboard - <?= $isLoggedIn ? 'Berhasil Login' : 'SolidMedia' ?></title>
+  <link rel="stylesheet" href="style.css?v=<?= time() ?>">
 </head>
 <body class="full-layout">
 
   <!-- Navbar -->
   <header class="site-navbar">
     <div class="navbar-container">
-      <a href="index.php?page=dashboard" class="brand-logo">SolidMedia</a>
+      <a href="index.php?page=dashboard" class="brand-logo" title="SolidMedia">
+        <?= icon('logo') ?>
+        <span>SolidMedia</span>
+      </a>
 
       <nav class="navbar-nav">
-        <a href="index.php?page=home" class="nav-link">Beranda</a>
-        <span class="nav-link" style="color: #111827; font-weight: 600;">Halo, <?= htmlspecialchars($currentUser['name']) ?></span>
-        <a href="index.php?page=logout" class="nav-btn-outline" style="color: #dc2626; border-color: #fca5a5;">Keluar</a>
+        <a href="index.php?page=dashboard" class="nav-link" style="color:#0284c7;font-weight:600;">Dashboard</a>
+
+        <?php if ($isLoggedIn): ?>
+          <a href="index.php?page=feed" class="nav-link">Feed</a>
+
+          <a href="index.php?page=dashboard" class="nav-user-badge" title="Profil <?= htmlspecialchars($userName) ?>">
+            <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="nav-user-avatar">
+            <span style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><?= htmlspecialchars($userName) ?></span>
+          </a>
+
+          <a href="index.php?page=logout" class="nav-btn-outline" style="color:#dc2626;border-color:#fca5a5;" title="Keluar">Keluar</a>
+        <?php else: ?>
+          <a href="index.php?page=login" class="nav-btn-outline">Masuk</a>
+          <a href="index.php?page=register" class="nav-btn-primary">Daftar</a>
+        <?php endif; ?>
       </nav>
     </div>
   </header>
 
-  <main style="max-width: 800px; margin: 30px auto; padding: 0 16px;">
+  <!-- Konten Utama Dashboard -->
+  <main class="dashboard-welcome-container" style="max-width: 560px; margin: 40px auto; padding: 0 20px;">
 
-    <!-- Notifikasi Flash -->
     <?php if (!empty($flash)): ?>
-      <div class="alert-box alert-<?= htmlspecialchars($flash['type']) ?>">
+      <div class="alert-box alert-<?= htmlspecialchars($flash['type']) ?>" style="margin-bottom: 20px; border-radius: 8px;">
         <?= htmlspecialchars($flash['message']) ?>
       </div>
     <?php endif; ?>
 
-    <!-- Ringkasan Akun Login -->
-    <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-      <h2 style="font-size: 16px; color: #111827; margin-bottom: 6px;">Status: Berhasil Masuk</h2>
-      <p style="font-size: 11.5px; color: #6b7280; margin-bottom: 12px;">Data akun diambil langsung dari session dan file JSON pengguna:</p>
-      
-      <div style="font-size: 12px; color: #374151; line-height: 1.8;">
-        <div><strong>Nama:</strong> <?= htmlspecialchars($currentUser['name']) ?></div>
-        <div><strong>Username:</strong> @<?= htmlspecialchars($currentUser['username']) ?></div>
-        <div><strong>Email:</strong> <?= htmlspecialchars($currentUser['email']) ?></div>
-      </div>
-    </div>
+    <div class="dashboard-welcome-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06); padding: 36px 28px; text-align: center;">
 
-    <!-- Area tugas Dzammar -->
+      <?php if ($isLoggedIn): ?>
+
+        <!-- ================= KEADAAN 1: USER SUDAH LOGIN ================= -->
+        <div class="dashboard-success-badge-wrap" style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border: 2px solid #86efac; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: #16a34a;" title="Berhasil Masuk">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+
+        <h1 class="dashboard-success-title" style="font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 8px; letter-spacing: -0.3px;">
+          Anda Berhasil Login!
+        </h1>
+        <p class="dashboard-success-subtitle" style="font-size: 13px; color: #4b5563; line-height: 1.6; max-width: 440px; margin: 0 auto 24px;">
+          Selamat datang kembali di platform <strong>SolidMedia</strong>! Akun Anda telah berhasil diautentikasi dan sesi Anda kini aktif.
+        </p>
+
+        <!-- Informasi Pengguna / Sesi Aktif -->
+        <div class="dashboard-user-card-inner" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 14px; text-align: left;">
+          <img src="<?= htmlspecialchars($userAvatar) ?>" alt="<?= htmlspecialchars($userName) ?>" class="dashboard-user-avatar" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #6ab7ff; flex-shrink: 0;">
+          <div class="dashboard-user-info" style="flex: 1; min-width: 0;">
+            <div class="dashboard-user-info-name" style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              <?= htmlspecialchars($userName) ?>
+            </div>
+            <div class="dashboard-user-info-handle" style="font-size: 11.5px; color: #64748b; margin-bottom: 6px;">
+              @<?= htmlspecialchars($userHandle) ?>
+            </div>
+            <div class="dashboard-user-info-badges" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10.5px;">
+              <span class="dashboard-pill-active" style="display: inline-flex; align-items: center; gap: 4px; background: #dcfce7; color: #15803d; font-weight: 600; padding: 2px 8px; border-radius: 12px;">
+                <svg width="7" height="7" viewBox="0 0 24 24" fill="#16a34a"><circle cx="12" cy="12" r="12"/></svg>
+                Sesi Aktif
+              </span>
+              <?php if (!empty($userEmail)): ?>
+                <span class="dashboard-pill-email" style="display: inline-flex; align-items: center; gap: 4px; background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 12px;">
+                  <?= icon('mail', 12) ?>
+                  <?= htmlspecialchars($userEmail) ?>
+                </span>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Utama Direct ke Feed -->
+        <a href="index.php?page=feed" class="dashboard-btn-cta-feed" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 320px; background: linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%); color: #1f2937; border: 1px solid #93c5fd; border-radius: 8px; height: 42px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(106, 183, 255, 0.28); margin: 0 auto; transition: all 0.2s;">
+          <span>Buka Halaman Feed</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Tombol Sekunder -->
+        <div class="dashboard-secondary-links" style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
+          <a href="index.php?page=logout" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px; font-size: 11.5px; color: #dc2626; border-color: #fca5a5;">Keluar Akun</a>
+        </div>
+
+      <?php else: ?>
+
+        <!-- ================= KEADAAN 2: USER BELUM LOGIN (TAMU) ================= -->
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #e0f2fe 0%, #d1fae5 100%); border: 2px solid #93c5fd; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: #0284c7;" title="Selamat Datang">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+
+        <h1 class="dashboard-success-title" style="font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 8px; letter-spacing: -0.3px;">
+          Selamat Datang di SolidMedia
+        </h1>
+        <p class="dashboard-success-subtitle" style="font-size: 13px; color: #4b5563; line-height: 1.6; max-width: 440px; margin: 0 auto 24px;">
+          Platform media sosial mahasiswa Ilmu Komputer UNJ. Silakan masuk ke akun Anda atau daftar untuk mulai melihat postingan dan berinteraksi di Feed.
+        </p>
+
+        <!-- Status Tamu -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <span style="font-size: 12px; font-weight: 700; color: #1e293b;">Status Kunjungan</span>
+            <span style="display: inline-flex; align-items: center; gap: 4px; background: #fee2e2; color: #dc2626; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 12px;">
+              🔴 Belum Masuk (Tamu)
+            </span>
+          </div>
+          <p style="font-size: 11.5px; color: #64748b; line-height: 1.5; margin: 0;">
+            Anda sedang mengakses Dashboard sebagai tamu. Untuk membuka fitur Feed dan membuat postingan, silakan masuk terlebih dahulu.
+          </p>
+        </div>
+
+        <!-- Tombol Aksi Masuk / Daftar -->
+        <a href="index.php?page=login" class="dashboard-btn-cta-feed" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 320px; background: linear-gradient(90deg, #6ab7ff 0%, #6effbf 100%); color: #1f2937; border: 1px solid #93c5fd; border-radius: 8px; height: 42px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(106, 183, 255, 0.28); margin: 0 auto; transition: all 0.2s;">
+          <span>Masuk ke Akun (Login)</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Tombol Sekunder Daftar -->
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
+          <a href="index.php?page=register" class="nav-btn-outline" style="height: 32px; display: inline-flex; align-items: center; padding: 0 16px; font-size: 11.5px;">Buat Akun Baru</a>
+        </div>
+
+      <?php endif; ?>
+
+    </div>
 
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    <p>&copy; 2026 SolidMedia - UTS Perancangan dan Pemrograman Website</p>
+    <p>&copy; 2026 SolidMedia - UTS Perancangan dan Pemrograman Website • S1 Ilmu Komputer Universitas Negeri Jakarta</p>
   </footer>
 
 </body>

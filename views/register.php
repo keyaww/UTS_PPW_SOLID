@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buat Akun - Solid Media</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=<?= time() ?>">
 </head>
 <body>
 
@@ -159,7 +159,7 @@
       </p>
 
       <p class="auth-footer" style="margin-top: 8px;">
-        <a href="index.php?page=home" style="color: #6b7280; font-size: 9.5px;">&larr; Kembali ke Halaman Awal</a>
+        <a href="index.php?page=dashboard" style="color: #6b7280; font-size: 9.5px;">&larr; Kembali ke Dashboard</a>
       </p>
     </form>
   </div>
