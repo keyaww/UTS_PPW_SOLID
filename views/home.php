@@ -39,7 +39,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
 
   <main class="hm-main">
 
-    <!-- [Area Tugas Sakha] ====================== HERO ====================== -->
+    <!-- [Area Tugas Sakha]  HERO -->
     <section class="hm-hero">
       <div class="hm-wrap hm-hero-grid">
 
@@ -66,7 +66,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
           </div>
         </div>
 
-        <!-- Contoh tampilan feed (murni HTML + CSS) -->
+        <!-- Contoh tampilan feed -->
         <figure class="hm-preview" aria-label="Contoh tampilan feed">
           <figcaption class="hm-mono">contoh tampilan feed</figcaption>
 
@@ -99,7 +99,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
       </div>
     </section>
 
-    <!-- ====================== ISI / FITUR ====================== -->
+    <!-- ISI -->
     <section id="isi" class="hm-section">
       <div class="hm-wrap hm-split">
         <div class="hm-split-head">
@@ -153,7 +153,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
       </div>
     </section>
 
-    <!-- ====================== CARA MULAI ====================== -->
+    <!-- How To Start -->
     <section id="mulai" class="hm-section hm-section-ink">
       <div class="hm-wrap">
         <p class="hm-mono hm-kicker">02 &mdash; mulai</p>
@@ -179,7 +179,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
       </div>
     </section>
 
-    <!-- ====================== FAQ (details/summary, tanpa JS) ====================== -->
+    <!--  FAQ  -->
     <section id="tanya" class="hm-section">
       <div class="hm-wrap hm-split">
         <div class="hm-split-head">
@@ -208,7 +208,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
       </div>
     </section>
 
-    <!-- ====================== AJAKAN ====================== -->
+    <!-- AJAKAN  -->
     <section class="hm-wrap">
       <div class="hm-cta-block">
         <h2>Ada kabar dari kelas hari ini?<br><em>Mulai dari sini.</em></h2>
@@ -221,7 +221,7 @@ $currentUser = is_logged_in() ? get_current_user_data() : null;
     </section>
 
   </main>
-  <!-- [/Area Tugas Sakha] -->
+  
 
   <footer class="hm-footer">
     <div class="hm-wrap hm-footer-grid">
